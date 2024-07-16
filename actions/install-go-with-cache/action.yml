@@ -1,5 +1,8 @@
-name: 'Setup and Cache Go'
-description: 'Setup and Cache Go 1.22'
+name: 'Setup and Cache Go and Configure Private in needed'
+description: 'Setup and Cache Go 1.22 and Configure Private in needed'
+inputs:
+  gh_token:
+    description: 'GitHub Personal Access Token'
 
 runs:
   using: 'composite'
@@ -17,3 +20,8 @@ runs:
       with:
         go-version: 1.22.4
         cache: false
+
+    - name: Setup Git Private Module
+      if: ${{ inputs.gh_token != '' }}
+      shell: bash
+      run: git config --global url.https://${{ inputs.gh_token }}@github.com/.insteadOf https://github.com/
