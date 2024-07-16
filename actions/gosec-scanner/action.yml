@@ -4,8 +4,7 @@ description: 'Static Code Analysis with golangci'
 runs:
   using: 'composite'
   steps:
-    - name: Static Code Analysis
-      uses: golangci/golangci-lint-action@v4
+    - name: Run Gosec Security Scanner
+      uses: securego/gosec@latest
       with:
-        args: |
-          --timeout 5m --out-${NO_FUTURE}format colored-line-number --enable errcheck,gosimple,govet,ineffassign,staticcheck,typecheck,unused,gocritic,asasalint,asciicheck,errchkjson,exportloopref,forcetypeassert,makezero,nilerr,unparam,unconvert,wastedassign,usestdlibvars 
+        args: -exclude G204,G301,G302,G304,G306 -tests -exclude-dir \.*test\.* ./...
