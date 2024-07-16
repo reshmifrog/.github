@@ -1,0 +1,41 @@
+name: 'CLA Assistant'
+description: 'CLA Assistant'
+inputs:
+  event_comment_body:
+    description: 'Event Comment Body'
+    required: true
+  event_name:
+    description: 'Event Name'
+    required: true
+  GITHUB_TOKEN:
+    description: 'GitHub Token'
+    required: true
+  CLA_SIGN_TOKEN:
+    description: 'CLA Sign Token'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - uses: actions-ecosystem/action-regex-match@v2
+      id: sign-or-recheck
+      with:
+        text: ${{ inputs.comment_body }}
+        regex: '\s*(I have read the CLA Document and I hereby sign the CLA)|(recheck)\s*'
+
+    - name: "CLA Assistant"
+      if: ${{ steps.sign-or-recheck.outputs.match != '' || inputs.event_name == 'pull_request_target' }}
+      uses: cla-assistant/github-action@v2.3.0
+      env:
+        # Generated and maintained by GitHub
+        GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
+        # JFrog organization secret
+        PERSONAL_ACCESS_TOKEN: ${{ inputs.CLA_SIGN_TOKEN }}
+      with:
+        path-to-signatures: "signed_clas.json"
+        path-to-document: "https://jfrog.com/cla/"
+        remote-organization-name: "jfrog"
+        remote-repository-name: "jfrog-signed-clas"
+        # branch should not be protected
+        branch: "master"
+        allowlist: bot*
