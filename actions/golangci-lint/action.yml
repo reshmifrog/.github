@@ -4,6 +4,10 @@ description: 'CLA Assistant'
 runs:
   using: 'composite'
   steps:
+    - name: Go mod download
+      shell: bash
+      run: go mod download
+
     - name: Static Code Analysis
       uses: golangci/golangci-lint-action@v6
       with:

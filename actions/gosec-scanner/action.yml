@@ -4,6 +4,10 @@ description: 'Static Code Analysis with golangci'
 runs:
   using: 'composite'
   steps:
+    - name: Go mod download
+      shell: bash
+      run: go mod download
+
     - name: Run Gosec Security Scanner
       uses: securego/gosec@master
       with:
