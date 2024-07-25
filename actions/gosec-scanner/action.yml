@@ -1,5 +1,5 @@
-name: 'Static Code Analysis with golangci'
-description: 'Static Code Analysis with golangci'
+name: 'Gosec Security Scanner'
+description: 'Gosec Security Scanner'
 
 runs:
   using: 'composite'

@@ -1,5 +1,5 @@
-name: 'CLA Assistant'
-description: 'CLA Assistant'
+name: 'Static Code Analysis'
+description: 'Static Code Analysis'
 
 runs:
   using: 'composite'
