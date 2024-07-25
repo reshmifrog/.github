@@ -1,5 +1,5 @@
-name: 'Static Code Analysis'
-description: 'Static Code Analysis'
+name: 'GolangCi Static Code Analysis'
+description: 'GolangCi Static Code Analysis'
 
 runs:
   using: 'composite'
