@@ -9,7 +9,7 @@ runs:
       run: go mod download
 
     - name: Static Code Analysis
-      uses: golangci/golangci-lint-action@v6.0.1
+      uses: golangci/golangci-lint-action@v5
       with:
         skip-cache: true
         args: |
