@@ -8,7 +8,14 @@ runs:
       shell: bash
       run: go mod download
 
+    - name: Check Go Version
+      shell: bash
+      run: go version
+
+    - name: Install Gosec
+      shell: bash    
+      run: go install github.com/securego/gosec/v2/cmd/gosec@latest  # Install the latest version
+
     - name: Run Gosec Security Scanner
-      uses: securego/gosec@master
-      with:
-        args: -exclude G204,G301,G302,G304,G306 -tests -exclude-dir \.*test\.* ./...
+      shell: bash
+      run: gosec -exclude G204,G301,G302,G304,G306 -tests -exclude-dir \.*test\.* ./...
