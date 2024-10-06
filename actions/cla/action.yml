@@ -17,7 +17,7 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - uses: actions-ecosystem/action-regex-match@main
+    - uses: kaisugi/action-regex-match@latest
       id: sign-or-recheck
       with:
         text: ${{ inputs.comment_body }}
