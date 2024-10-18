@@ -10,8 +10,6 @@ inputs:
   VERSION:
     description: 'Artifactory Version. Default is latest.'
     required: false
-    # Temporarily use version 7.84.17 due to an issue with the automatic token generation mechanism in 7.90
-    default: '7.84.17'
 
 runs:
   using: 'composite'
