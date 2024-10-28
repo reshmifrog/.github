@@ -20,7 +20,7 @@ runs:
     - uses: kaisugi/action-regex-match@v1.0.1
       id: sign-or-recheck
       with:
-        text: ${{ inputs.comment_body }}
+        text: ${{ inputs.event_comment_body }}
         regex: '\s*(I have read the CLA Document and I hereby sign the CLA)|(recheck)\s*'
 
     - name: "CLA Assistant"
